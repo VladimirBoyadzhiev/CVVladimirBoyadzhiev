@@ -1,217 +1,1053 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vladimir Boyadzhiev | Cyber & XR Consultant</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #0a0f1f;
-  --card: #111936;
-  --accent: #00e5ff;
-  --accent2: #7cff6b;
-  --text: #e6e9f0;
-  --muted: #9aa4bf;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: radial-gradient(circle at top, #121a3a, var(--bg));
-  color: var(--text);
-}
-header {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-header h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3rem;
-  margin: 0;
-  color: var(--accent);
-}
-header p {
-  color: var(--muted);
-  max-width: 900px;
-  margin: 1rem auto 0;
-}
-section {
-  padding: 3rem 2rem;
-  max-width: 1200px;
-  margin: auto;
-}
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.8rem;
-  color: var(--accent2);
-  margin-bottom: 1.5rem;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-.card {
-  background: linear-gradient(145deg, #121b3d, var(--card));
-  padding: 1.5rem;
-  border-radius: 14px;
-  box-shadow: 0 0 0 1px rgba(0,229,255,0.15);
-}
-.card h3 {
-  margin-top: 0;
-  color: var(--accent);
-}
-.tag {
-  display: inline-block;
-  margin: 0.25rem;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  background: rgba(0,229,255,0.12);
-  color: var(--accent);
-}
-.timeline-item {
-  margin-bottom: 1.5rem;
-}
-.timeline-item span {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-footer {
-  text-align: center;
-  padding: 2rem;
-  color: var(--muted);
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vladimir Boyadzhiev | Cybersecurity & XR</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Cybersecurity Consultant • IT Auditor • XR / Mixed Reality Creator. Open for collaborative projects in security, XR, robotics, and immersive training." />
+
+  <style>
+    :root{
+      --bg0:#050816;
+      --bg1:#070b1b;
+      --panel:#0c1430cc;
+      --panel2:#0b122acc;
+      --stroke:rgba(0,229,255,.18);
+      --stroke2:rgba(124,255,107,.18);
+      --text:#e9eeff;
+      --muted:#a7b1d6;
+      --cyan:#00e5ff;
+      --green:#7cff6b;
+      --pink:#ff4fd8;
+      --warn:#ffcc66;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --r: 18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% -10%, rgba(0,229,255,.25), transparent 60%),
+        radial-gradient(900px 600px at 85% 10%, rgba(255,79,216,.16), transparent 60%),
+        radial-gradient(900px 700px at 60% 110%, rgba(124,255,107,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    /* Animated cyber grid */
+    .gridfx{
+      position:fixed; inset:0; pointer-events:none; opacity:.35;
+      background:
+        linear-gradient(rgba(0,229,255,.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,.08) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at 50% 35%, #000 40%, transparent 72%);
+      animation: drift 18s linear infinite;
+      filter: drop-shadow(0 0 18px rgba(0,229,255,.18));
+    }
+    @keyframes drift{
+      from{transform:translate3d(0,0,0)}
+      to{transform:translate3d(-44px,-44px,0)}
+    }
+
+    /* Top nav */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(5,8,22,.85), rgba(5,8,22,.55));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .topbar .wrap{
+      max-width:1200px; margin:0 auto; padding:14px 18px;
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+    }
+
+    .brand{
+      display:flex; gap:12px; align-items:center;
+      min-width: 260px;
+    }
+    .sig{
+      width:42px; height:42px; border-radius:14px;
+      background: radial-gradient(circle at 30% 30%, rgba(0,229,255,.35), rgba(124,255,107,.15) 40%, rgba(255,79,216,.12) 70%),
+                  linear-gradient(145deg, rgba(17,25,54,.9), rgba(7,11,27,.9));
+      box-shadow: 0 0 0 1px rgba(0,229,255,.18), 0 18px 40px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .sig:before{
+      content:""; position:absolute; inset:-40%;
+      background: conic-gradient(from 180deg, rgba(0,229,255,.0), rgba(0,229,255,.35), rgba(124,255,107,.0), rgba(255,79,216,.25), rgba(0,229,255,.0));
+      animation: spin 8s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .brand h1{
+      margin:0;
+      font-family:Orbitron,Inter;
+      font-weight:800;
+      letter-spacing:.6px;
+      font-size: 14px;
+      line-height: 1.1;
+    }
+    .brand .sub{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(12,20,48,.45);
+      padding:8px 10px;
+      border-radius: 999px;
+      font-size:12px;
+      transition: .2s ease;
+    }
+    .nav a:hover{ color:var(--text); border-color: rgba(0,229,255,.22); box-shadow: 0 0 0 2px rgba(0,229,255,.10) inset; }
+
+    /* Layout */
+    .wrap{max-width:1200px; margin:0 auto; padding: 0 18px;}
+
+    .hero{
+      padding: 52px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr;}
+      .brand{min-width:unset}
+    }
+
+    .card{
+      background: linear-gradient(145deg, rgba(12,20,48,.72), rgba(11,18,42,.55));
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .card:before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(700px 220px at 20% 0%, rgba(0,229,255,.14), transparent 60%),
+                  radial-gradient(700px 220px at 80% 0%, rgba(255,79,216,.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    .pad{padding:18px; position:relative;}
+
+    .title{
+      font-family: Orbitron, Inter;
+      font-weight:800;
+      font-size: 34px;
+      margin: 0 0 8px;
+      letter-spacing: .8px;
+      line-height:1.1;
+    }
+
+    .glitch{
+      position:relative;
+      display:inline-block;
+      text-shadow: 0 0 16px rgba(0,229,255,.25);
+    }
+    .glitch:before, .glitch:after{
+      content: attr(data-text);
+      position:absolute; left:0; top:0;
+      width:100%;
+      opacity:.45;
+      clip-path: inset(0 0 0 0);
+    }
+    .glitch:before{ transform: translate(1px, -1px); color: var(--pink); animation: g1 2.8s infinite linear; }
+    .glitch:after{ transform: translate(-1px, 1px); color: var(--cyan); animation: g2 3.4s infinite linear; }
+    @keyframes g1{
+      0%{clip-path: inset(0 0 80% 0)}
+      20%{clip-path: inset(10% 0 55% 0)}
+      40%{clip-path: inset(45% 0 20% 0)}
+      60%{clip-path: inset(70% 0 5% 0)}
+      80%{clip-path: inset(20% 0 60% 0)}
+      100%{clip-path: inset(0 0 80% 0)}
+    }
+    @keyframes g2{
+      0%{clip-path: inset(65% 0 10% 0)}
+      25%{clip-path: inset(5% 0 75% 0)}
+      50%{clip-path: inset(35% 0 35% 0)}
+      75%{clip-path: inset(80% 0 5% 0)}
+      100%{clip-path: inset(65% 0 10% 0)}
+    }
+
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 70ch;
+      line-height: 1.5;
+    }
+
+    .pillrow{margin-top: 14px; display:flex; flex-wrap:wrap; gap:8px;}
+    .pill{
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(5,8,22,.35);
+      color: var(--text);
+      display:flex; gap:8px; align-items:center;
+    }
+    .dot{width:8px; height:8px; border-radius:99px; background:var(--cyan); box-shadow: 0 0 12px rgba(0,229,255,.45)}
+    .dot.g{background:var(--green); box-shadow: 0 0 12px rgba(124,255,107,.45)}
+    .dot.p{background:var(--pink); box-shadow: 0 0 12px rgba(255,79,216,.35)}
+
+    /* Contact panel */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .kv{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(5,8,22,.28);
+    }
+    .k{color:var(--muted); font-size:12px}
+    .v{font-size:12px; color:var(--text); word-break:break-word; text-align:right}
+    .v a{color:var(--cyan); text-decoration:none}
+    .v a:hover{text-decoration:underline}
+
+    /* Sections */
+    section{padding: 26px 0;}
+    .section-title{
+      display:flex; align-items:center; gap:10px;
+      margin: 0 0 12px;
+      font-family: Orbitron, Inter;
+      letter-spacing:.6px;
+      font-weight:800;
+      font-size: 18px;
+      color: var(--green);
+    }
+    .section-title:before{
+      content:"";
+      width: 16px; height: 16px; border-radius: 6px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,255,107,.55), rgba(0,229,255,.15));
+      box-shadow: 0 0 0 1px rgba(124,255,107,.25), 0 0 22px rgba(124,255,107,.15);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .mini{
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(145deg, rgba(12,20,48,.55), rgba(11,18,42,.38));
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .mini:hover{ border-color: rgba(0,229,255,.22) }
+    .mini .pad{padding:14px}
+
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .tag{
+      font-size: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,229,255,.18);
+      background: rgba(0,229,255,.08);
+      color: var(--cyan);
+    }
+    .tag.g{border-color: rgba(124,255,107,.20); background: rgba(124,255,107,.08); color: var(--green)}
+    .tag.p{border-color: rgba(255,79,216,.20); background: rgba(255,79,216,.08); color: var(--pink)}
+
+    /* Assets UI */
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom: 12px;
+    }
+    .search{
+      flex: 1 1 260px;
+      display:flex;
+      gap:10px;
+    }
+    input[type="search"]{
+      width:100%;
+      border-radius: 999px;
+      padding: 10px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      outline:none;
+      background: rgba(5,8,22,.35);
+      color: var(--text);
+    }
+    input[type="search"]:focus{border-color: rgba(0,229,255,.25); box-shadow: 0 0 0 3px rgba(0,229,255,.10)}
+
+    .chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end}
+    .chip{
+      cursor:pointer;
+      user-select:none;
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(12,20,48,.35);
+      color: var(--muted);
+      transition:.18s ease;
+    }
+    .chip.active{ color: var(--text); border-color: rgba(0,229,255,.22); box-shadow: 0 0 0 2px rgba(0,229,255,.10) inset; }
+
+    .asset{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding: 14px;
+    }
+    .logo{
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(5,8,22,.35);
+      border:1px solid rgba(255,255,255,.10);
+      flex: 0 0 auto;
+      overflow:hidden;
+    }
+    .logo img{ width: 22px; height: 22px; filter: drop-shadow(0 0 10px rgba(0,229,255,.12)); }
+
+    .asset h3{margin:0; font-size:14px; color: var(--text)}
+    .asset p{margin:6px 0 0; color: var(--muted); font-size:12px; line-height:1.45}
+    .asset .meta{margin-top:10px; display:flex; flex-wrap:wrap; gap:8px}
+    .badge{
+      font-size: 11px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(5,8,22,.28);
+      color: var(--text);
+    }
+    .badge.c{border-color: rgba(0,229,255,.20)}
+    .badge.g{border-color: rgba(124,255,107,.20)}
+    .badge.p{border-color: rgba(255,79,216,.20)}
+
+    /* Modal */
+    dialog{
+      width:min(860px, calc(100% - 22px));
+      border:none;
+      border-radius: 18px;
+      padding:0;
+      background: rgba(8,12,28,.92);
+      color: var(--text);
+      box-shadow: 0 40px 120px rgba(0,0,0,.6);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    dialog::backdrop{background: rgba(0,0,0,.55)}
+    .modal-head{display:flex; justify-content:space-between; align-items:center; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.08)}
+    .modal-title{font-family:Orbitron,Inter; font-weight:800; font-size: 14px; letter-spacing:.6px}
+    .close{
+      cursor:pointer;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(12,20,48,.35);
+      color: var(--text);
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+    .modal-body{padding: 14px 16px}
+    .specgrid{display:grid; grid-template-columns: 1fr 1fr; gap: 10px}
+    @media (max-width: 720px){ .specgrid{grid-template-columns: 1fr} }
+    .spec{
+      padding: 10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(5,8,22,.30);
+    }
+    .spec .k{font-size:11px}
+    .spec .v{font-size:12px; text-align:left; margin-top:4px}
+
+    .cta{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px;
+    }
+    .btn{
+      cursor:pointer;
+      border:none;
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--text);
+      background: linear-gradient(145deg, rgba(0,229,255,.18), rgba(124,255,107,.12));
+      border: 1px solid rgba(0,229,255,.22);
+      box-shadow: 0 0 0 2px rgba(0,229,255,.08) inset;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn:hover{filter:brightness(1.08)}
+    .btn.secondary{ background: rgba(12,20,48,.35); border: 1px solid rgba(255,255,255,.10); box-shadow:none; color: var(--muted) }
+
+    .foot{
+      padding: 26px 0 46px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 24px;
+      font-size: 12px;
+    }
+
+    /* Small helper */
+    .hint{color: var(--muted); font-size: 12px; margin: 8px 0 0}
+  </style>
 </head>
+
 <body>
+  <div class="gridfx"></div>
 
-<header>
-  <h1>Vladimir Boyadzhiev</h1>
-  <p>Cybersecurity Consultant • XR / Mixed Reality Creator • IT Auditor<br>
-  Focused on secure, immersive and future-oriented digital systems</p>
-</header>
-
-<section>
-  <div class="section-title">Professional Profile</div>
-  <div class="card">
-    Experienced IT professional with a strong background in cybersecurity, IT audit, and digital compliance, combined with hands-on expertise in XR, VR, AR, and mixed reality technologies. Actively working in regulated environments (ISO 27001, DORA, NIS, SOC, GDPR) and simultaneously developing experimental and applied immersive technologies for education, art, and industrial use.
-  </div>
-</section>
-
-<section>
-  <div class="section-title">Core Competencies</div>
-  <div class="grid">
-    <div class="card">
-      <h3>Cybersecurity & Compliance</h3>
-      <div class="tag">ISO 27001</div>
-      <div class="tag">DORA</div>
-      <div class="tag">NIS / NIS2</div>
-      <div class="tag">SOC</div>
-      <div class="tag">GDPR</div>
-      <div class="tag">COBIT</div>
-      <div class="tag">IAM</div>
-      <div class="tag">IT Audit</div>
-    </div>
-    <div class="card">
-      <h3>XR & Emerging Tech</h3>
-      <div class="tag">VR / AR / MR</div>
-      <div class="tag">Unity (conceptual)</div>
-      <div class="tag">Sensors & Tracking</div>
-      <div class="tag">Haptics</div>
-      <div class="tag">Computer Vision</div>
-      <div class="tag">Robotics</div>
-    </div>
-    <div class="card">
-      <h3>IT & Infrastructure</h3>
-      <div class="tag">Windows Server</div>
-      <div class="tag">Active Directory</div>
-      <div class="tag">Networking</div>
-      <div class="tag">Cloud</div>
-      <div class="tag">Linux</div>
-      <div class="tag">Virtualization</div>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">
+        <div class="sig" aria-hidden="true"></div>
+        <div>
+          <h1>VLADIMIR BOYADZHIEV</h1>
+          <p class="sub">Cybersecurity Consultant • IT Auditor • XR / Mixed Reality Creator</p>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="#profile">Profile</a>
+        <a href="#skills">Competencies</a>
+        <a href="#assets">Assets</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+      </nav>
     </div>
   </div>
-</section>
 
-<section>
-  <div class="section-title">Technology Assets for Collaboration</div>
-  <div class="grid">
-    <div class="card">
-      <h3>Professional Software</h3>
-      <ul>
-        <li>Adobe Creative Cloud (Full Pro Suite)</li>
-        <li>ChatGPT Pro</li>
-        <li>Gemini Pro</li>
-        <li>Microsoft Copilot 365 Pro</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Computing Hardware</h3>
-      <ul>
-        <li>Main Workstation: Intel i9, NVIDIA RTX 4070, 64 GB RAM</li>
-        <li>Secondary PC: Intel i7, NVIDIA RTX 2070</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>XR & Immersive Devices</h3>
-      <ul>
-        <li>HTC Vive (Eye Tracking)</li>
-        <li>Meta Quest 3 & Meta Quest 2</li>
-        <li>Sony PlayStation VR 1 & 2</li>
-        <li>bHaptics Suit & Gloves</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Robotics, IoT & Fabrication</h3>
-      <ul>
-        <li>DJI Air 3S Drone</li>
-        <li>Raspberry Pi 4 & 5</li>
-        <li>Arduino Platform (Mega Sensor Set)</li>
-        <li>Robotic Arm</li>
-        <li>Ultimaker 2+</li>
-        <li>Snapmaker 3‑in‑1</li>
-        <li>Alexa & Google Hub</li>
-      </ul>
-    </div>
-  </div>
-</section>
+  <main class="wrap">
+    <section class="hero" id="profile">
+      <div class="hero-grid">
+        <div class="card">
+          <div class="pad">
+            <h2 class="title">
+              <span class="glitch" data-text="Cyber x XR">Cyber x XR</span>
+              <span style="color:var(--cyan)"> Consultant</span>
+            </h2>
+            <p class="subtitle">
+              I work at the intersection of <strong>digital compliance</strong> (ISO 27001 / DORA / NIS / SOC / GDPR),
+              <strong>enterprise IT controls</strong>, and <strong>immersive technologies</strong> (XR, sensors, haptics, robotics).
+              I am available for collaborative projects that require both <em>trust</em> and <em>innovation</em>.
+            </p>
 
-<section>
-  <div class="section-title">Professional Experience</div>
-  <div class="card">
-    <div class="timeline-item">
-      <strong>IT Auditor – KPMG IT (2024 – Present)</strong><br>
-      <span>Digital compliance, cybersecurity audits, ISO, DORA, SOC, GDPR, SAP, Jira, Confluence</span>
-    </div>
-    <div class="timeline-item">
-      <strong>Senior Analyst – AUDI AG via HCL Technologies (2022 – 2024)</strong><br>
-      <span>IAM, system administration, access control, enterprise infrastructure</span>
-    </div>
-    <div class="timeline-item">
-      <strong>Tech Support Engineer – Veritas / GoDaddy (2018 – 2021)</strong><br>
-      <span>Backup systems, hosting, DNS, cloud, security, Linux, Windows Server</span>
-    </div>
-  </div>
-</section>
+            <div class="pillrow" aria-label="Highlights">
+              <div class="pill"><span class="dot"></span> IT Audit & Digital Compliance</div>
+              <div class="pill"><span class="dot g"></span> XR Labs & Prototyping</div>
+              <div class="pill"><span class="dot p"></span> Secure Systems & Emerging Tech</div>
+            </div>
 
-<section>
-  <div class="section-title">Education & Certifications</div>
-  <div class="card">
-    <ul>
-      <li>Artificial Intelligence – UNIBIT (ongoing)</li>
-      <li>Cybersecurity – Rakovski National Defence College</li>
-      <li>Master Degree in Law – Sofia University “St. Kliment Ohridski”</li>
-      <li>Certified: Cisco, IS2, SoftUni</li>
-    </ul>
-  </div>
-</section>
+            <div class="cta">
+              <a class="btn" href="mailto:Manager@bgcosmos.com">✉️ Contact: Manager@bgcosmos.com</a>
+              <a class="btn secondary" href="https://linkedin.com/in/vladimir-boyadzhiev-b81490151" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+            <p class="hint">Tip: Use the search + filters below to explore my collaboration-ready hardware and software lab.</p>
+          </div>
+        </div>
 
-<footer>
-  © Vladimir Boyadzhiev • Open for collaborative research, XR projects, cybersecurity consulting
-</footer>
+        <div class="card">
+          <div class="pad contact">
+            <div class="kv"><div class="k">Location</div><div class="v">Sofia, Bulgaria</div></div>
+            <div class="kv"><div class="k">Phone</div><div class="v">+359 88 867 6505</div></div>
+            <div class="kv"><div class="k">Email</div><div class="v"><a href="mailto:Manager@bgcosmos.com">Manager@bgcosmos.com</a></div></div>
+            <div class="kv"><div class="k">Languages</div><div class="v">German (C1–C2), English (B2)</div></div>
+            <div class="kv"><div class="k">Focus</div><div class="v">Cybersecurity, AI, XR, Robotics</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section id="skills">
+      <h3 class="section-title">Core Competencies</h3>
+      <div class="grid">
+        <div class="mini"><div class="pad">
+          <h3 style="margin:0;color:var(--cyan)">Cybersecurity & Compliance</h3>
+          <div class="tags">
+            <span class="tag">ISO 27001</span>
+            <span class="tag">DORA</span>
+            <span class="tag">NIS / NIS2</span>
+            <span class="tag">SOC</span>
+            <span class="tag">GDPR</span>
+            <span class="tag">COBIT</span>
+            <span class="tag">IAM</span>
+            <span class="tag">IT Audit</span>
+          </div>
+        </div></div>
+
+        <div class="mini"><div class="pad">
+          <h3 style="margin:0;color:var(--cyan)">XR & Emerging Tech</h3>
+          <div class="tags">
+            <span class="tag g">VR / AR / MR</span>
+            <span class="tag g">Sensors & Tracking</span>
+            <span class="tag g">Haptics</span>
+            <span class="tag g">Robotics</span>
+            <span class="tag g">3D Printing</span>
+          </div>
+        </div></div>
+
+        <div class="mini"><div class="pad">
+          <h3 style="margin:0;color:var(--cyan)">Infrastructure & Operations</h3>
+          <div class="tags">
+            <span class="tag p">Windows / AD</span>
+            <span class="tag p">Networking</span>
+            <span class="tag p">Cloud</span>
+            <span class="tag p">Linux</span>
+            <span class="tag p">Virtualization</span>
+          </div>
+        </div></div>
+      </div>
+    </section>
+
+    <section id="assets">
+      <h3 class="section-title">Collaboration-Ready Technology Assets</h3>
+
+      <div class="controls">
+        <div class="search">
+          <input id="q" type="search" placeholder="Search assets (e.g., Quest 3, RTX 4070, Raspberry Pi, Adobe)..." aria-label="Search assets" />
+        </div>
+        <div class="chips" aria-label="Category filters">
+          <div class="chip active" data-filter="all">All</div>
+          <div class="chip" data-filter="software">Software</div>
+          <div class="chip" data-filter="compute">Compute</div>
+          <div class="chip" data-filter="xr">XR / Haptics</div>
+          <div class="chip" data-filter="robotics">Robotics / IoT</div>
+          <div class="chip" data-filter="fabrication">3D / Fabrication</div>
+        </div>
+      </div>
+
+      <div id="assetGrid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <section id="experience">
+      <h3 class="section-title">Professional Experience</h3>
+      <div class="grid">
+        <div class="mini"><div class="pad">
+          <h3 style="margin:0">IT Auditor — KPMG IT (2024–Present)</h3>
+          <p class="subtitle">Digital compliance, cybersecurity, ISO, DORA, SOC, GDPR; SAP, Jira, Confluence, Excel.</p>
+        </div></div>
+
+        <div class="mini"><div class="pad">
+          <h3 style="margin:0">Senior Analyst — AUDI AG via HCL (2022–2024)</h3>
+          <p class="subtitle">IAM, system administration, access control, enterprise infrastructure and knowledge base maintenance.</p>
+        </div></div>
+
+        <div class="mini"><div class="pad">
+          <h3 style="margin:0">Tech Support Engineer — Veritas / GoDaddy (2018–2021)</h3>
+          <p class="subtitle">Backup administration, AD/Windows servers, networking, storage, cloud, Linux, Exchange, virtualization, DNS and hosting.</p>
+        </div></div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h3 class="section-title">Education & Certifications</h3>
+      <div class="grid">
+        <div class="mini"><div class="pad">
+          <h3 style="margin:0">Education</h3>
+          <p class="subtitle">Artificial Intelligence — UNIBIT (ongoing) • Cybersecurity — Rakovski National Defence College • Master Degree in Law — Sofia University.</p>
+        </div></div>
+        <div class="mini"><div class="pad">
+          <h3 style="margin:0">Certifications</h3>
+          <p class="subtitle">Cisco • IS2 • SoftUni (training/courses). Driving License B category.</p>
+        </div></div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div>
+        © <span id="y"></span> Vladimir Boyadzhiev • Open for collaborative R&D, XR experiences, and compliance-driven security projects.
+        <div style="margin-top:8px; color:var(--muted)">Note: Specifications are summarized for clarity and may vary by configuration or market revision.</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <dialog id="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="mTitle">Asset details</div>
+      <button class="close" id="mClose">Close</button>
+    </div>
+    <div class="modal-body">
+      <div id="mDesc" class="subtitle"></div>
+      <div style="height:12px"></div>
+      <div id="mSpecs" class="specgrid"></div>
+      <div id="mLinks" class="cta"></div>
+    </div>
+  </dialog>
+
+  <script>
+    // Lightweight brand logos via Simple Icons (vector, cacheable)
+    const logo = {
+      adobe: "https://cdn.simpleicons.org/adobe/ff0000",
+      openai: "https://cdn.simpleicons.org/openai/ffffff",
+      google: "https://cdn.simpleicons.org/google/ffffff",
+      microsoft: "https://cdn.simpleicons.org/microsoft/ffffff",
+      nvidia: "https://cdn.simpleicons.org/nvidia/76b900",
+      raspberrypi: "https://cdn.simpleicons.org/raspberrypi/a22846",
+      arduino: "https://cdn.simpleicons.org/arduino/00979d",
+      playstation: "https://cdn.simpleicons.org/playstation/ffffff",
+      dji: "https://cdn.simpleicons.org/dji/ffffff",
+      vive: "https://cdn.simpleicons.org/htc/ffffff",
+      meta: "https://cdn.simpleicons.org/meta/ffffff",
+      snapmaker: "https://cdn.simpleicons.org/creality/ffffff", // fallback icon (Snapmaker not in simpleicons)
+      ultimaker: "https://cdn.simpleicons.org/ultimaker/ffffff",
+      alexa: "https://cdn.simpleicons.org/amazonalexa/00a8e1",
+      googlehome: "https://cdn.simpleicons.org/googlehome/ffffff",
+      bhaptics: "https://cdn.simpleicons.org/vrchat/ffffff" // placeholder icon (bHaptics not in simpleicons)
+    };
+
+    // Asset catalogue (you can extend this list at any time)
+    const assets = [
+      // Software
+      {
+        id: "adobecc",
+        type: "software",
+        name: "Adobe Creative Cloud (Pro Suite)",
+        brandIcon: logo.adobe,
+        blurb: "Creative production stack for design, video, audio, and graphics workflows.",
+        specs: {
+          "Use cases": "XR content creation, compositing, motion graphics, marketing assets",
+          "Deliverables": "Branding, posters, trailers, UI assets, 3D pipeline support"
+        },
+        links: [
+          { label: "Adobe", href: "https://www.adobe.com/creativecloud.html" }
+        ]
+      },
+      {
+        id: "chatgptpro",
+        type: "software",
+        name: "ChatGPT (Pro)",
+        brandIcon: logo.openai,
+        blurb: "AI co-pilot for research, drafting, automation, and technical prototyping.",
+        specs: {
+          "Use cases": "Compliance analysis, documentation, code scaffolding, ideation",
+          "Strength": "Fast iteration + structured reasoning"
+        },
+        links: [
+          { label: "OpenAI", href: "https://openai.com/" }
+        ]
+      },
+      {
+        id: "gemini",
+        type: "software",
+        name: "Gemini (Pro)",
+        brandIcon: logo.google,
+        blurb: "Generative AI for multimodal workflows and productivity.",
+        specs: {
+          "Use cases": "Research summarization, content drafting, multimodal exploration",
+          "Collaboration": "Comparative prompting across models"
+        },
+        links: [
+          { label: "Google", href: "https://ai.google/" }
+        ]
+      },
+      {
+        id: "copilot365",
+        type: "software",
+        name: "Microsoft Copilot 365 (Pro)",
+        brandIcon: logo.microsoft,
+        blurb: "Productivity automation across Microsoft 365 workloads.",
+        specs: {
+          "Use cases": "Reports, spreadsheets, governance documentation, project comms",
+          "Tooling": "Word / Excel / PowerPoint / Teams integration"
+        },
+        links: [
+          { label: "Microsoft", href: "https://www.microsoft.com/" }
+        ]
+      },
+
+      // Compute
+      {
+        id: "mainpc",
+        type: "compute",
+        name: "Main Workstation",
+        brandIcon: logo.nvidia,
+        blurb: "High-performance PC for XR development, AI workflows and real-time content.",
+        specs: {
+          "CPU": "Intel Core i9 (model varies)",
+          "GPU": "NVIDIA GeForce RTX 4070 (12GB class)",
+          "RAM": "64 GB",
+          "GPU highlight": "5888 CUDA cores, 192-bit memory interface (model-dependent)"
+        },
+        links: [
+          { label: "RTX 4070 family", href: "https://www.nvidia.com/geforce/graphics-cards/40-series/rtx-4070-family/" }
+        ]
+      },
+      {
+        id: "secondpc",
+        type: "compute",
+        name: "Secondary PC",
+        brandIcon: logo.nvidia,
+        blurb: "Additional compute node for parallel testing, streaming, or build pipelines.",
+        specs: {
+          "CPU": "Intel Core i7",
+          "GPU": "NVIDIA GeForce RTX 2070",
+          "Use": "Secondary rendering, demos, capture / streaming, lab services"
+        },
+        links: []
+      },
+
+      // XR / Haptics
+      {
+        id: "viveproeye",
+        type: "xr",
+        name: "HTC VIVE Pro Eye (Eye Tracking)",
+        brandIcon: logo.vive,
+        blurb: "PC VR headset with integrated eye tracking for analytics and interaction.",
+        specs: {
+          "Resolution": "1440 × 1600 per eye (2880 × 1600 combined)",
+          "Refresh rate": "90 Hz",
+          "Field of view": "≈110°",
+          "Tracking": "SteamVR Tracking + sensors + eye tracking"
+        },
+        links: [
+          { label: "VIVE Pro Eye specs", href: "https://developer.vive.com/resources/hardware-guides/vive-pro-eye-specs-user-guide/" }
+        ]
+      },
+      {
+        id: "quest3",
+        type: "xr",
+        name: "Meta Quest 3",
+        brandIcon: logo.meta,
+        blurb: "Standalone mixed reality headset with high-res panels and 120 Hz modes.",
+        specs: {
+          "Resolution": "2064 × 2208 per eye",
+          "Refresh rate": "Up to 120 Hz (app dependent)",
+          "SoC": "Snapdragon XR2 Gen 2"
+        },
+        links: [
+          { label: "Meta Quest 3", href: "https://www.meta.com/quest/quest-3/" }
+        ]
+      },
+      {
+        id: "quest2",
+        type: "xr",
+        name: "Meta Quest 2",
+        brandIcon: logo.meta,
+        blurb: "Standalone VR headset suitable for demos, training and multi-user testing.",
+        specs: {
+          "Use": "Baseline VR compatibility tests, multi-device sessions",
+          "Collaboration": "Rapid deployment for workshops"
+        },
+        links: []
+      },
+      {
+        id: "psvr2",
+        type: "xr",
+        name: "PlayStation VR2",
+        brandIcon: logo.playstation,
+        blurb: "OLED headset with high resolution and 90/120 Hz refresh modes.",
+        specs: {
+          "Display": "OLED",
+          "Resolution": "2000 × 2040 per eye",
+          "Refresh rate": "90 Hz / 120 Hz",
+          "Field of view": "≈110°"
+        },
+        links: [
+          { label: "PS VR2 tech specs", href: "https://www.playstation.com/ps-vr2/ps-vr2-tech-specs/" }
+        ]
+      },
+      {
+        id: "psvr1",
+        type: "xr",
+        name: "PlayStation VR (PS VR1)",
+        brandIcon: logo.playstation,
+        blurb: "Legacy VR device for backward-compatibility and historical comparisons.",
+        specs: {
+          "Resolution": "1920 × 1080 (960 × 1080 per eye)",
+          "Refresh rate": "90 Hz / 120 Hz",
+          "Field of view": "≈100°"
+        },
+        links: [
+          { label: "PS VR tech specs", href: "https://www.playstation.com/ps-vr/tech-specs/" }
+        ]
+      },
+      {
+        id: "bhaptics",
+        type: "xr",
+        name: "bHaptics Suit & Gloves",
+        brandIcon: logo.bhaptics,
+        blurb: "Haptic feedback equipment to prototype tactile experiences for XR training and games.",
+        specs: {
+          "TactSuit Pro": "32 feedback points (ERM motors), up to ~13.5 hours playtime (usage dependent)",
+          "TactGlove DK2": "12 haptic feedback points (HD LRAs)"
+        },
+        links: [
+          { label: "TactSuit Pro", href: "https://www.bhaptics.com/en/tactsuit/tactsuit-pro/" },
+          { label: "TactGlove DK2", href: "https://www.bhaptics.com/en/tactsuit/tactglove-dk2/" }
+        ]
+      },
+
+      // Robotics / IoT
+      {
+        id: "raspi4",
+        type: "robotics",
+        name: "Raspberry Pi 4",
+        brandIcon: logo.raspberrypi,
+        blurb: "Compact ARM computer for edge compute, sensors, prototypes and gateways.",
+        specs: {
+          "CPU": "Broadcom BCM2711, quad-core Cortex-A72 @ 1.8 GHz",
+          "RAM": "1/2/4/8 GB LPDDR4 (variant dependent)",
+          "I/O": "2× USB 3.0, 2× USB 2.0, Gigabit Ethernet, dual micro-HDMI"
+        },
+        links: [
+          { label: "Raspberry Pi 4 specs", href: "https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/" }
+        ]
+      },
+      {
+        id: "raspi5",
+        type: "robotics",
+        name: "Raspberry Pi 5",
+        brandIcon: logo.raspberrypi,
+        blurb: "Newer generation Pi for faster edge compute and higher-throughput prototyping.",
+        specs: {
+          "CPU": "Broadcom BCM2712, quad-core Cortex-A76 @ 2.4 GHz",
+          "Positioning": "Up to ~2–3× CPU uplift vs Pi 4 (vendor guidance)",
+          "RAM": "Variants up to 16 GB (model dependent)"
+        },
+        links: [
+          { label: "Raspberry Pi 5", href: "https://www.raspberrypi.com/products/raspberry-pi-5/" }
+        ]
+      },
+      {
+        id: "arduino",
+        type: "robotics",
+        name: "Arduino Mega 2560 + Sensor Kit",
+        brandIcon: logo.arduino,
+        blurb: "Microcontroller platform for rapid sensor/actuator experiments, robotics and IoT.",
+        specs: {
+          "MCU": "ATmega2560",
+          "Flash": "256 KB (8 KB used by bootloader)",
+          "SRAM": "8 KB",
+          "EEPROM": "4 KB",
+          "I/O": "54 digital pins, 16 analog inputs"
+        },
+        links: [
+          { label: "Arduino Mega 2560", href: "https://store.arduino.cc/products/arduino-mega-2560-rev3" }
+        ]
+      },
+      {
+        id: "roboarm",
+        type: "robotics",
+        name: "Robotic Arm",
+        brandIcon: logo.arduino,
+        blurb: "Robotics prototyping platform for kinematics, control loops and interaction demos.",
+        specs: {
+          "Use": "Pick-and-place demos, perception + control experiments, XR teleoperation",
+          "Integration": "Arduino/Raspberry Pi + sensors"
+        },
+        links: []
+      },
+      {
+        id: "alexa",
+        type: "robotics",
+        name: "Alexa & Google Hub",
+        brandIcon: logo.alexa,
+        blurb: "Voice/IoT hubs for smart-home integration prototypes and ambient interfaces.",
+        specs: {
+          "Use": "Voice control, automations, ambient feedback loops",
+          "Integration": "IoT demos and sensor-driven scenarios"
+        },
+        links: []
+      },
+
+      // Fabrication
+      {
+        id: "ultimaker2p",
+        type: "fabrication",
+        name: "Ultimaker 2+",
+        brandIcon: logo.ultimaker,
+        blurb: "Reliable FFF 3D printer for functional prototypes and custom parts.",
+        specs: {
+          "Build volume": "223 × 223 × 205 mm",
+          "Layer resolution": "20–200 micron (nozzle dependent)",
+          "Technology": "FFF (fused filament fabrication)"
+        },
+        links: [
+          { label: "Ultimaker 2+ datasheet", href: "https://um-support-files.ultimaker.com/Product-datasheet/Other/Ultimaker%202%2B%20series%20-%20Product%20data%20sheet.pdf" }
+        ]
+      },
+      {
+        id: "snapmaker",
+        type: "fabrication",
+        name: "Snapmaker 3-in-1 (3D Print / Laser / CNC)",
+        brandIcon: logo.snapmaker,
+        blurb: "Modular fabrication platform for rapid multi-process prototyping.",
+        specs: {
+          "Capabilities": "3D printing + laser engraving/cutting + CNC carving",
+          "Work area": "Varies by model; e.g., A350T 3D print work area up to ~320 × 335 × 310 mm",
+          "Chassis": "All-metal modular design"
+        },
+        links: [
+          { label: "Snapmaker 2.0 specs", href: "https://www.snapmaker.com/snapmaker-2/specs-at" }
+        ]
+      },
+      {
+        id: "dji",
+        type: "fabrication",
+        name: "DJI Air 3S",
+        brandIcon: logo.dji,
+        blurb: "Drone platform for aerial capture, mapping experiments and creative XR assets.",
+        specs: {
+          "Max flight time": "Up to ~45 minutes (vendor spec)",
+          "Max takeoff altitude": "6000 m (vendor spec)",
+          "Use": "Aerial photo/video capture, photogrammetry inputs (project-dependent)"
+        },
+        links: [
+          { label: "DJI Air 3S specs", href: "https://www.dji.com/bg/air-3s/specs" }
+        ]
+      }
+    ];
+
+    const grid = document.getElementById('assetGrid');
+    const q = document.getElementById('q');
+    const chips = Array.from(document.querySelectorAll('.chip'));
+
+    const modal = document.getElementById('modal');
+    const mTitle = document.getElementById('mTitle');
+    const mDesc = document.getElementById('mDesc');
+    const mSpecs = document.getElementById('mSpecs');
+    const mLinks = document.getElementById('mLinks');
+    const mClose = document.getElementById('mClose');
+
+    let activeFilter = 'all';
+
+    function esc(s){
+      return String(s)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'",'&#039;');
+    }
+
+    function matches(item, text){
+      const hay = (item.name + ' ' + item.type + ' ' + item.blurb + ' ' + Object.values(item.specs||{}).join(' ')).toLowerCase();
+      return hay.includes(text.toLowerCase());
+    }
+
+    function render(){
+      const text = q.value.trim();
+      const items = assets
+        .filter(a => activeFilter === 'all' ? true : a.type === activeFilter)
+        .filter(a => text ? matches(a, text) : true);
+
+      grid.innerHTML = '';
+
+      if(items.length === 0){
+        const empty = document.createElement('div');
+        empty.className = 'mini';
+        empty.innerHTML = `<div class="pad"><h3 style="margin:0">No matches</h3><p class="subtitle">Try a different keyword or remove filters.</p></div>`;
+        grid.appendChild(empty);
+        return;
+      }
+
+      for(const a of items){
+        const card = document.createElement('div');
+        card.className = 'mini';
+        card.style.cursor = 'pointer';
+
+        const badges = [];
+        if(a.type === 'software') badges.push('<span class="badge c">Software</span>');
+        if(a.type === 'compute') badges.push('<span class="badge c">Compute</span>');
+        if(a.type === 'xr') badges.push('<span class="badge p">XR / Haptics</span>');
+        if(a.type === 'robotics') badges.push('<span class="badge g">Robotics / IoT</span>');
+        if(a.type === 'fabrication') badges.push('<span class="badge g">Fabrication</span>');
+
+        card.innerHTML = `
+          <div class="asset">
+            <div class="logo" aria-hidden="true">${a.brandIcon ? `<img alt="" src="${esc(a.brandIcon)}" />` : ''}</div>
+            <div>
+              <h3>${esc(a.name)}</h3>
+              <p>${esc(a.blurb)}</p>
+              <div class="meta">${badges.join('')}</div>
+            </div>
+          </div>
+        `;
+
+        card.addEventListener('click', () => openModal(a));
+        grid.appendChild(card);
+      }
+    }
+
+    function openModal(a){
+      mTitle.textContent = a.name;
+      mDesc.textContent = a.blurb;
+
+      mSpecs.innerHTML = '';
+      const entries = Object.entries(a.specs || {});
+      for(const [k,v] of entries){
+        const box = document.createElement('div');
+        box.className = 'spec';
+        box.innerHTML = `<div class="k">${esc(k)}</div><div class="v">${esc(v)}</div>`;
+        mSpecs.appendChild(box);
+      }
+
+      mLinks.innerHTML = '';
+      if((a.links||[]).length){
+        for(const l of a.links){
+          const link = document.createElement('a');
+          link.className = 'btn secondary';
+          link.href = l.href;
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+          link.textContent = l.label;
+          mLinks.appendChild(link);
+        }
+      }
+
+      modal.showModal();
+    }
+
+    chips.forEach(ch => {
+      ch.addEventListener('click', () => {
+        chips.forEach(x => x.classList.remove('active'));
+        ch.classList.add('active');
+        activeFilter = ch.dataset.filter;
+        render();
+      });
+    });
+
+    q.addEventListener('input', render);
+
+    mClose.addEventListener('click', () => modal.close());
+    modal.addEventListener('click', (e) => {
+      const r = modal.getBoundingClientRect();
+      const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      if(!inside) modal.close();
+    });
+
+    document.getElementById('y').textContent = new Date().getFullYear();
+    render();
+  </script>
 </body>
 </html>
