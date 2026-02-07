@@ -3,31 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vladimir Boyadzhiev | Cybersecurity & XR</title>
+  <title>Vladimir Boyadzhiev | Cyberpunk CV</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <meta name="description" content="Cybersecurity Consultant • IT Auditor • XR / Mixed Reality Creator. Open for collaborative projects in security, XR, robotics, and immersive training." />
+  <meta name="description" content="Cybersecurity Consultant • IT Auditor • XR / Mixed Reality Creator. Cyberpunk lab-ready profile and collaboration assets." />
 
   <style>
     :root{
-      --bg0:#050816;
-      --bg1:#070b1b;
-      --panel:#0c1430cc;
-      --panel2:#0b122acc;
-      --stroke:rgba(0,229,255,.18);
-      --stroke2:rgba(124,255,107,.18);
+      --bg0:#040511;
+      --bg1:#060818;
+      --panel:#0b1030cc;
+      --panel2:#070b1fcc;
+      --stroke:rgba(0,229,255,.22);
+      --stroke2:rgba(124,255,107,.20);
       --text:#e9eeff;
       --muted:#a7b1d6;
       --cyan:#00e5ff;
       --green:#7cff6b;
       --pink:#ff4fd8;
-      --warn:#ffcc66;
-      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --amber:#ffcc66;
+      --shadow: 0 24px 80px rgba(0,0,0,.55);
       --r: 18px;
+      --grid: rgba(0,229,255,.10);
     }
 
     *{box-sizing:border-box}
@@ -37,171 +38,192 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
       color:var(--text);
       background:
-        radial-gradient(1200px 700px at 15% -10%, rgba(0,229,255,.25), transparent 60%),
-        radial-gradient(900px 600px at 85% 10%, rgba(255,79,216,.16), transparent 60%),
-        radial-gradient(900px 700px at 60% 110%, rgba(124,255,107,.16), transparent 55%),
+        radial-gradient(1200px 760px at 18% -10%, rgba(0,229,255,.30), transparent 62%),
+        radial-gradient(1000px 700px at 88% 6%, rgba(255,79,216,.18), transparent 62%),
+        radial-gradient(900px 700px at 55% 110%, rgba(124,255,107,.16), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
 
-    /* Animated cyber grid */
+    /* FX layers */
+    .fx{position:fixed; inset:0; pointer-events:none; z-index:0;}
+    #particles{position:absolute; inset:0; width:100%; height:100%; opacity:.72;}
     .gridfx{
-      position:fixed; inset:0; pointer-events:none; opacity:.35;
+      position:absolute; inset:0; opacity:.40;
       background:
-        linear-gradient(rgba(0,229,255,.10) 1px, transparent 1px),
+        linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0,229,255,.08) 1px, transparent 1px);
       background-size: 44px 44px;
-      mask-image: radial-gradient(circle at 50% 35%, #000 40%, transparent 72%);
+      mask-image: radial-gradient(circle at 50% 35%, #000 44%, transparent 74%);
       animation: drift 18s linear infinite;
-      filter: drop-shadow(0 0 18px rgba(0,229,255,.18));
+      filter: drop-shadow(0 0 22px rgba(0,229,255,.18));
     }
-    @keyframes drift{
-      from{transform:translate3d(0,0,0)}
-      to{transform:translate3d(-44px,-44px,0)}
+    @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-44px,-44px,0)}}
+
+    .scanlines{
+      position:absolute; inset:0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.035) 0px,
+        rgba(255,255,255,.035) 1px,
+        rgba(0,0,0,0) 2px,
+        rgba(0,0,0,0) 5px
+      );
+      opacity:.22;
+      mix-blend-mode: overlay;
+      animation: scan 8s linear infinite;
+    }
+    @keyframes scan{0%{transform:translateY(-12px)}100%{transform:translateY(12px)}}
+
+    .vignette{
+      position:absolute; inset:-2px;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.45) 100%);
+      opacity:.9;
+    }
+
+    .crt{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(0,229,255,.09), transparent 60%),
+        linear-gradient(90deg, rgba(255,0,0,.03), rgba(0,255,0,.02), rgba(0,0,255,.03));
+      mix-blend-mode: screen;
+      opacity:.22;
+      animation: flicker 3.6s infinite;
+    }
+    @keyframes flicker{
+      0%, 100%{opacity:.18}
+      20%{opacity:.26}
+      22%{opacity:.16}
+      35%{opacity:.24}
+      72%{opacity:.20}
+      74%{opacity:.28}
     }
 
     /* Top nav */
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(5,8,22,.85), rgba(5,8,22,.55));
+      background: linear-gradient(180deg, rgba(4,5,17,.92), rgba(4,5,17,.58));
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .topbar .wrap{
       max-width:1200px; margin:0 auto; padding:14px 18px;
       display:flex; gap:12px; align-items:center; justify-content:space-between;
+      position:relative;
+      z-index:1;
     }
 
-    .brand{
-      display:flex; gap:12px; align-items:center;
-      min-width: 260px;
-    }
+    .brand{display:flex; gap:12px; align-items:center; min-width: 260px;}
+
     .sig{
-      width:42px; height:42px; border-radius:14px;
-      background: radial-gradient(circle at 30% 30%, rgba(0,229,255,.35), rgba(124,255,107,.15) 40%, rgba(255,79,216,.12) 70%),
-                  linear-gradient(145deg, rgba(17,25,54,.9), rgba(7,11,27,.9));
-      box-shadow: 0 0 0 1px rgba(0,229,255,.18), 0 18px 40px rgba(0,0,0,.35);
-      position:relative;
-      overflow:hidden;
+      width:44px; height:44px; border-radius:16px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(0,229,255,.50), rgba(124,255,107,.20) 45%, rgba(255,79,216,.16) 72%),
+        linear-gradient(145deg, rgba(18,26,58,.92), rgba(7,11,27,.92));
+      box-shadow:
+        0 0 0 1px rgba(0,229,255,.26),
+        0 0 22px rgba(0,229,255,.18),
+        0 0 42px rgba(255,79,216,.10),
+        0 18px 44px rgba(0,0,0,.45);
+      position:relative; overflow:hidden;
     }
     .sig:before{
-      content:""; position:absolute; inset:-40%;
-      background: conic-gradient(from 180deg, rgba(0,229,255,.0), rgba(0,229,255,.35), rgba(124,255,107,.0), rgba(255,79,216,.25), rgba(0,229,255,.0));
-      animation: spin 8s linear infinite;
+      content:""; position:absolute; inset:-45%;
+      background: conic-gradient(from 180deg, rgba(0,229,255,.0), rgba(0,229,255,.45), rgba(124,255,107,.0), rgba(255,79,216,.30), rgba(0,229,255,.0));
+      animation: spin 7.5s linear infinite;
+    }
+    .sig:after{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.10), transparent);
+      transform: translateX(-120%);
+      animation: sheen 3.2s infinite;
     }
     @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes sheen{0%{transform:translateX(-120%)}40%{transform:translateX(120%)}100%{transform:translateX(120%)}}
 
-    .brand h1{
-      margin:0;
-      font-family:Orbitron,Inter;
-      font-weight:800;
-      letter-spacing:.6px;
-      font-size: 14px;
-      line-height: 1.1;
-    }
-    .brand .sub{
-      margin:0;
-      font-size:12px;
-      color:var(--muted);
-    }
+    .brand h1{margin:0; font-family:Orbitron,Inter; font-weight:800; letter-spacing:.8px; font-size: 14px; line-height: 1.1;}
+    .brand .sub{margin:0; font-size:12px; color:var(--muted);}
 
-    .nav{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-    }
+    .nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
     .nav a{
-      text-decoration:none;
-      color:var(--muted);
+      text-decoration:none; color:var(--muted);
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(12,20,48,.45);
+      background: rgba(10,16,44,.42);
       padding:8px 10px;
       border-radius: 999px;
       font-size:12px;
-      transition: .2s ease;
+      transition: .18s ease;
+      position:relative;
     }
-    .nav a:hover{ color:var(--text); border-color: rgba(0,229,255,.22); box-shadow: 0 0 0 2px rgba(0,229,255,.10) inset; }
+    .nav a:after{
+      content:""; position:absolute; inset:-1px;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(0,229,255,.0), rgba(0,229,255,.22), rgba(255,79,216,.18), rgba(0,229,255,.0));
+      opacity:0;
+      z-index:-1;
+      filter: blur(6px);
+      transition:.18s ease;
+    }
+    .nav a:hover{color:var(--text); border-color: rgba(0,229,255,.22);}
+    .nav a:hover:after{opacity:1}
 
     /* Layout */
+    main{position:relative; z-index:1;}
     .wrap{max-width:1200px; margin:0 auto; padding: 0 18px;}
 
-    .hero{
-      padding: 52px 0 22px;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns: 1fr;}
-      .brand{min-width:unset}
-    }
+    .hero{padding: 54px 0 18px;}
+    .hero-grid{display:grid; grid-template-columns: 1.25fr .75fr; gap:16px; align-items:stretch;}
+    @media (max-width: 980px){.hero-grid{grid-template-columns: 1fr;} .brand{min-width:unset}}
 
+    /* Cards */
     .card{
-      background: linear-gradient(145deg, rgba(12,20,48,.72), rgba(11,18,42,.55));
+      background: linear-gradient(145deg, rgba(10,16,44,.74), rgba(8,12,34,.56));
       border: 1px solid rgba(255,255,255,.10);
       border-radius: var(--r);
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
+      transform-style:preserve-3d;
     }
 
     .card:before{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(700px 220px at 20% 0%, rgba(0,229,255,.14), transparent 60%),
-                  radial-gradient(700px 220px at 80% 0%, rgba(255,79,216,.10), transparent 60%);
+      content:""; position:absolute; inset:0;
+      background:
+        radial-gradient(800px 250px at 18% 0%, rgba(0,229,255,.16), transparent 60%),
+        radial-gradient(800px 250px at 82% 0%, rgba(255,79,216,.12), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent 35%);
       pointer-events:none;
     }
+    .card:after{
+      content:""; position:absolute; inset:-2px;
+      border-radius: calc(var(--r) + 2px);
+      background: linear-gradient(135deg, rgba(0,229,255,.25), rgba(255,79,216,.18), rgba(124,255,107,.18));
+      opacity:.0;
+      filter: blur(10px);
+      transition: .18s ease;
+      z-index:0;
+    }
+    .card:hover:after{opacity:.7}
 
-    .pad{padding:18px; position:relative;}
+    .pad{padding:18px; position:relative; z-index:1;}
 
     .title{
       font-family: Orbitron, Inter;
       font-weight:800;
-      font-size: 34px;
+      font-size: 36px;
       margin: 0 0 8px;
-      letter-spacing: .8px;
+      letter-spacing: .9px;
       line-height:1.1;
     }
 
-    .glitch{
-      position:relative;
-      display:inline-block;
-      text-shadow: 0 0 16px rgba(0,229,255,.25);
-    }
-    .glitch:before, .glitch:after{
-      content: attr(data-text);
-      position:absolute; left:0; top:0;
-      width:100%;
-      opacity:.45;
-      clip-path: inset(0 0 0 0);
-    }
-    .glitch:before{ transform: translate(1px, -1px); color: var(--pink); animation: g1 2.8s infinite linear; }
-    .glitch:after{ transform: translate(-1px, 1px); color: var(--cyan); animation: g2 3.4s infinite linear; }
-    @keyframes g1{
-      0%{clip-path: inset(0 0 80% 0)}
-      20%{clip-path: inset(10% 0 55% 0)}
-      40%{clip-path: inset(45% 0 20% 0)}
-      60%{clip-path: inset(70% 0 5% 0)}
-      80%{clip-path: inset(20% 0 60% 0)}
-      100%{clip-path: inset(0 0 80% 0)}
-    }
-    @keyframes g2{
-      0%{clip-path: inset(65% 0 10% 0)}
-      25%{clip-path: inset(5% 0 75% 0)}
-      50%{clip-path: inset(35% 0 35% 0)}
-      75%{clip-path: inset(80% 0 5% 0)}
-      100%{clip-path: inset(65% 0 10% 0)}
-    }
+    .glitch{position:relative; display:inline-block; text-shadow: 0 0 22px rgba(0,229,255,.28);}
+    .glitch:before, .glitch:after{content: attr(data-text); position:absolute; left:0; top:0; width:100%; opacity:.55; clip-path: inset(0 0 0 0);}
+    .glitch:before{ transform: translate(2px, -1px); color: var(--pink); animation: g1 2.2s infinite linear; }
+    .glitch:after{ transform: translate(-2px, 1px); color: var(--cyan); animation: g2 2.8s infinite linear; }
+    @keyframes g1{0%{clip-path: inset(0 0 78% 0)}25%{clip-path: inset(14% 0 50% 0)}50%{clip-path: inset(48% 0 18% 0)}75%{clip-path: inset(70% 0 6% 0)}100%{clip-path: inset(0 0 78% 0)}}
+    @keyframes g2{0%{clip-path: inset(62% 0 10% 0)}25%{clip-path: inset(6% 0 70% 0)}50%{clip-path: inset(34% 0 30% 0)}75%{clip-path: inset(78% 0 4% 0)}100%{clip-path: inset(62% 0 10% 0)}}
 
-    .subtitle{
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      max-width: 70ch;
-      line-height: 1.5;
-    }
+    .subtitle{margin: 0; color: var(--muted); font-size: 14px; max-width: 76ch; line-height: 1.55;}
 
     .pillrow{margin-top: 14px; display:flex; flex-wrap:wrap; gap:8px;}
     .pill{
@@ -209,28 +231,24 @@
       padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.10);
-      background: rgba(5,8,22,.35);
+      background: rgba(4,5,17,.35);
       color: var(--text);
       display:flex; gap:8px; align-items:center;
+      box-shadow: 0 0 0 2px rgba(0,229,255,.06) inset;
     }
-    .dot{width:8px; height:8px; border-radius:99px; background:var(--cyan); box-shadow: 0 0 12px rgba(0,229,255,.45)}
-    .dot.g{background:var(--green); box-shadow: 0 0 12px rgba(124,255,107,.45)}
-    .dot.p{background:var(--pink); box-shadow: 0 0 12px rgba(255,79,216,.35)}
+    .dot{width:8px; height:8px; border-radius:99px; background:var(--cyan); box-shadow: 0 0 14px rgba(0,229,255,.55)}
+    .dot.g{background:var(--green); box-shadow: 0 0 14px rgba(124,255,107,.55)}
+    .dot.p{background:var(--pink); box-shadow: 0 0 14px rgba(255,79,216,.45)}
 
     /* Contact panel */
-    .contact{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-    }
+    .contact{display:grid; grid-template-columns: 1fr; gap:12px;}
     .kv{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
+      display:flex; justify-content:space-between; gap:12px;
       padding: 10px 12px;
       border-radius: 14px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(5,8,22,.28);
+      background: rgba(4,5,17,.28);
+      box-shadow: 0 0 0 1px rgba(0,229,255,.05) inset;
     }
     .k{color:var(--muted); font-size:12px}
     .v{font-size:12px; color:var(--text); word-break:break-word; text-align:right}
@@ -243,33 +261,32 @@
       display:flex; align-items:center; gap:10px;
       margin: 0 0 12px;
       font-family: Orbitron, Inter;
-      letter-spacing:.6px;
+      letter-spacing:.7px;
       font-weight:800;
       font-size: 18px;
       color: var(--green);
+      text-transform: uppercase;
     }
     .section-title:before{
       content:"";
       width: 16px; height: 16px; border-radius: 6px;
-      background: radial-gradient(circle at 30% 30%, rgba(124,255,107,.55), rgba(0,229,255,.15));
-      box-shadow: 0 0 0 1px rgba(124,255,107,.25), 0 0 22px rgba(124,255,107,.15);
+      background: radial-gradient(circle at 30% 30%, rgba(124,255,107,.65), rgba(0,229,255,.18));
+      box-shadow: 0 0 0 1px rgba(124,255,107,.25), 0 0 26px rgba(124,255,107,.16);
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-    }
+    .grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;}
 
     .mini{
       border-radius: var(--r);
       border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(145deg, rgba(12,20,48,.55), rgba(11,18,42,.38));
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      background: linear-gradient(145deg, rgba(10,16,44,.56), rgba(8,12,34,.42));
+      box-shadow: 0 18px 54px rgba(0,0,0,.40);
       position:relative;
       overflow:hidden;
+      transform-style:preserve-3d;
+      transition: transform .14s ease, border-color .14s ease;
     }
-    .mini:hover{ border-color: rgba(0,229,255,.22) }
+    .mini:hover{ border-color: rgba(0,229,255,.26); }
     .mini .pad{padding:14px}
 
     .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
@@ -277,122 +294,87 @@
       font-size: 12px;
       padding: 6px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(0,229,255,.18);
-      background: rgba(0,229,255,.08);
+      border: 1px solid rgba(0,229,255,.22);
+      background: rgba(0,229,255,.09);
       color: var(--cyan);
     }
-    .tag.g{border-color: rgba(124,255,107,.20); background: rgba(124,255,107,.08); color: var(--green)}
-    .tag.p{border-color: rgba(255,79,216,.20); background: rgba(255,79,216,.08); color: var(--pink)}
+    .tag.g{border-color: rgba(124,255,107,.22); background: rgba(124,255,107,.09); color: var(--green)}
+    .tag.p{border-color: rgba(255,79,216,.22); background: rgba(255,79,216,.09); color: var(--pink)}
 
     /* Assets UI */
-    .controls{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom: 12px;
-    }
-    .search{
-      flex: 1 1 260px;
-      display:flex;
-      gap:10px;
-    }
+    .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-bottom: 12px;}
+    .search{flex: 1 1 260px; display:flex; gap:10px;}
     input[type="search"]{
       width:100%;
       border-radius: 999px;
       padding: 10px 12px;
       border:1px solid rgba(255,255,255,.10);
       outline:none;
-      background: rgba(5,8,22,.35);
+      background: rgba(4,5,17,.35);
       color: var(--text);
+      box-shadow: 0 0 0 2px rgba(0,229,255,.06) inset;
     }
-    input[type="search"]:focus{border-color: rgba(0,229,255,.25); box-shadow: 0 0 0 3px rgba(0,229,255,.10)}
+    input[type="search"]:focus{border-color: rgba(0,229,255,.28); box-shadow: 0 0 0 4px rgba(0,229,255,.12)}
 
     .chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end}
     .chip{
-      cursor:pointer;
-      user-select:none;
+      cursor:pointer; user-select:none;
       border-radius: 999px;
       padding: 8px 10px;
       font-size: 12px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(12,20,48,.35);
+      background: rgba(10,16,44,.40);
       color: var(--muted);
-      transition:.18s ease;
+      transition:.16s ease;
+      position:relative;
     }
-    .chip.active{ color: var(--text); border-color: rgba(0,229,255,.22); box-shadow: 0 0 0 2px rgba(0,229,255,.10) inset; }
+    .chip.active{ color: var(--text); border-color: rgba(0,229,255,.26); box-shadow: 0 0 0 2px rgba(0,229,255,.12) inset; }
+    .chip:hover{color:var(--text)}
 
-    .asset{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding: 14px;
-    }
+    .asset{display:flex; gap:12px; align-items:flex-start; padding: 14px;}
     .logo{
-      width: 40px; height: 40px;
-      border-radius: 14px;
+      width: 42px; height: 42px;
+      border-radius: 16px;
       display:grid; place-items:center;
-      background: rgba(5,8,22,.35);
+      background: rgba(4,5,17,.36);
       border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 0 0 1px rgba(0,229,255,.05) inset, 0 0 26px rgba(0,229,255,.08);
       flex: 0 0 auto;
       overflow:hidden;
     }
-    .logo img{ width: 22px; height: 22px; filter: drop-shadow(0 0 10px rgba(0,229,255,.12)); }
+    .logo img{ width: 22px; height: 22px; filter: drop-shadow(0 0 14px rgba(0,229,255,.18)); }
 
     .asset h3{margin:0; font-size:14px; color: var(--text)}
     .asset p{margin:6px 0 0; color: var(--muted); font-size:12px; line-height:1.45}
     .asset .meta{margin-top:10px; display:flex; flex-wrap:wrap; gap:8px}
-    .badge{
-      font-size: 11px;
-      padding: 5px 8px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(5,8,22,.28);
-      color: var(--text);
-    }
-    .badge.c{border-color: rgba(0,229,255,.20)}
-    .badge.g{border-color: rgba(124,255,107,.20)}
-    .badge.p{border-color: rgba(255,79,216,.20)}
+    .badge{font-size: 11px; padding: 5px 8px; border-radius: 999px; border:1px solid rgba(255,255,255,.10); background: rgba(4,5,17,.28); color: var(--text);}
+    .badge.c{border-color: rgba(0,229,255,.22)}
+    .badge.g{border-color: rgba(124,255,107,.22)}
+    .badge.p{border-color: rgba(255,79,216,.22)}
 
     /* Modal */
     dialog{
-      width:min(860px, calc(100% - 22px));
+      width:min(900px, calc(100% - 22px));
       border:none;
       border-radius: 18px;
       padding:0;
-      background: rgba(8,12,28,.92);
+      background: rgba(6,8,24,.94);
       color: var(--text);
-      box-shadow: 0 40px 120px rgba(0,0,0,.6);
+      box-shadow: 0 40px 140px rgba(0,0,0,.65);
       border: 1px solid rgba(255,255,255,.12);
     }
-    dialog::backdrop{background: rgba(0,0,0,.55)}
+    dialog::backdrop{background: rgba(0,0,0,.60)}
     .modal-head{display:flex; justify-content:space-between; align-items:center; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.08)}
-    .modal-title{font-family:Orbitron,Inter; font-weight:800; font-size: 14px; letter-spacing:.6px}
-    .close{
-      cursor:pointer;
-      border-radius: 12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(12,20,48,.35);
-      color: var(--text);
-      padding: 8px 10px;
-      font-size: 12px;
-    }
+    .modal-title{font-family:Orbitron,Inter; font-weight:800; font-size: 14px; letter-spacing:.7px}
+    .close{cursor:pointer; border-radius: 12px; border:1px solid rgba(255,255,255,.10); background: rgba(10,16,44,.42); color: var(--text); padding: 8px 10px; font-size: 12px;}
     .modal-body{padding: 14px 16px}
     .specgrid{display:grid; grid-template-columns: 1fr 1fr; gap: 10px}
     @media (max-width: 720px){ .specgrid{grid-template-columns: 1fr} }
-    .spec{
-      padding: 10px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(5,8,22,.30);
-    }
-    .spec .k{font-size:11px}
-    .spec .v{font-size:12px; text-align:left; margin-top:4px}
+    .spec{padding: 10px 12px; border-radius: 14px; border:1px solid rgba(255,255,255,.10); background: rgba(4,5,17,.30); box-shadow: 0 0 0 1px rgba(0,229,255,.04) inset;}
+    .spec .k{font-size:11px; color:var(--muted)}
+    .spec .v{font-size:12px; text-align:left; margin-top:4px; color:var(--text)}
 
-    .cta{
-      display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px;
-    }
+    .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px;}
     .btn{
       cursor:pointer;
       border:none;
@@ -400,32 +382,36 @@
       padding: 10px 12px;
       font-size: 12px;
       color: var(--text);
-      background: linear-gradient(145deg, rgba(0,229,255,.18), rgba(124,255,107,.12));
-      border: 1px solid rgba(0,229,255,.22);
-      box-shadow: 0 0 0 2px rgba(0,229,255,.08) inset;
+      background: linear-gradient(145deg, rgba(0,229,255,.22), rgba(255,79,216,.14), rgba(124,255,107,.10));
+      border: 1px solid rgba(0,229,255,.28);
+      box-shadow: 0 0 0 2px rgba(0,229,255,.10) inset, 0 0 28px rgba(0,229,255,.10);
       text-decoration:none;
       display:inline-flex;
       align-items:center;
       gap:8px;
     }
-    .btn:hover{filter:brightness(1.08)}
-    .btn.secondary{ background: rgba(12,20,48,.35); border: 1px solid rgba(255,255,255,.10); box-shadow:none; color: var(--muted) }
+    .btn:hover{filter:brightness(1.10)}
+    .btn.secondary{ background: rgba(10,16,44,.40); border: 1px solid rgba(255,255,255,.10); box-shadow:none; color: var(--muted) }
 
-    .foot{
-      padding: 26px 0 46px;
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,.08);
-      margin-top: 24px;
-      font-size: 12px;
-    }
-
-    /* Small helper */
+    .foot{padding: 26px 0 46px; color: var(--muted); border-top: 1px solid rgba(255,255,255,.08); margin-top: 24px; font-size: 12px;}
     .hint{color: var(--muted); font-size: 12px; margin: 8px 0 0}
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .gridfx,.scanlines,.crt,.sig:before,.sig:after{animation:none !important}
+    }
   </style>
 </head>
 
 <body>
-  <div class="gridfx"></div>
+  <!-- Cyberpunk FX layer -->
+  <div class="fx" aria-hidden="true">
+    <canvas id="particles"></canvas>
+    <div class="gridfx"></div>
+    <div class="crt"></div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+  </div>
 
   <div class="topbar">
     <div class="wrap">
@@ -449,7 +435,7 @@
   <main class="wrap">
     <section class="hero" id="profile">
       <div class="hero-grid">
-        <div class="card">
+        <div class="card tilt">
           <div class="pad">
             <h2 class="title">
               <span class="glitch" data-text="Cyber x XR">Cyber x XR</span>
@@ -471,11 +457,11 @@
               <a class="btn" href="mailto:Manager@bgcosmos.com">✉️ Contact: Manager@bgcosmos.com</a>
               <a class="btn secondary" href="https://linkedin.com/in/vladimir-boyadzhiev-b81490151" target="_blank" rel="noreferrer">LinkedIn</a>
             </div>
-            <p class="hint">Tip: Use the search + filters below to explore my collaboration-ready hardware and software lab.</p>
+            <p class="hint">Cyberpunk mode: hover cards for neon tilt. Search + filters below for my lab inventory.</p>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card tilt">
           <div class="pad contact">
             <div class="kv"><div class="k">Location</div><div class="v">Sofia, Bulgaria</div></div>
             <div class="kv"><div class="k">Phone</div><div class="v">+359 88 867 6505</div></div>
@@ -490,7 +476,7 @@
     <section id="skills">
       <h3 class="section-title">Core Competencies</h3>
       <div class="grid">
-        <div class="mini"><div class="pad">
+        <div class="mini tilt"><div class="pad">
           <h3 style="margin:0;color:var(--cyan)">Cybersecurity & Compliance</h3>
           <div class="tags">
             <span class="tag">ISO 27001</span>
@@ -504,7 +490,7 @@
           </div>
         </div></div>
 
-        <div class="mini"><div class="pad">
+        <div class="mini tilt"><div class="pad">
           <h3 style="margin:0;color:var(--cyan)">XR & Emerging Tech</h3>
           <div class="tags">
             <span class="tag g">VR / AR / MR</span>
@@ -515,7 +501,7 @@
           </div>
         </div></div>
 
-        <div class="mini"><div class="pad">
+        <div class="mini tilt"><div class="pad">
           <h3 style="margin:0;color:var(--cyan)">Infrastructure & Operations</h3>
           <div class="tags">
             <span class="tag p">Windows / AD</span>
@@ -529,11 +515,11 @@
     </section>
 
     <section id="assets">
-      <h3 class="section-title">Collaboration-Ready Technology Assets</h3>
+      <h3 class="section-title">Collaboration-Ready Tech Lab</h3>
 
       <div class="controls">
         <div class="search">
-          <input id="q" type="search" placeholder="Search assets (e.g., Quest 3, RTX 4070, Raspberry Pi, Adobe)..." aria-label="Search assets" />
+          <input id="q" type="search" placeholder="Search (Quest 3, RTX 4070, Raspberry Pi, Adobe...)" aria-label="Search assets" />
         </div>
         <div class="chips" aria-label="Category filters">
           <div class="chip active" data-filter="all">All</div>
@@ -551,17 +537,17 @@
     <section id="experience">
       <h3 class="section-title">Professional Experience</h3>
       <div class="grid">
-        <div class="mini"><div class="pad">
+        <div class="mini tilt"><div class="pad">
           <h3 style="margin:0">IT Auditor — KPMG IT (2024–Present)</h3>
           <p class="subtitle">Digital compliance, cybersecurity, ISO, DORA, SOC, GDPR; SAP, Jira, Confluence, Excel.</p>
         </div></div>
 
-        <div class="mini"><div class="pad">
+        <div class="mini tilt"><div class="pad">
           <h3 style="margin:0">Senior Analyst — AUDI AG via HCL (2022–2024)</h3>
           <p class="subtitle">IAM, system administration, access control, enterprise infrastructure and knowledge base maintenance.</p>
         </div></div>
 
-        <div class="mini"><div class="pad">
+        <div class="mini tilt"><div class="pad">
           <h3 style="margin:0">Tech Support Engineer — Veritas / GoDaddy (2018–2021)</h3>
           <p class="subtitle">Backup administration, AD/Windows servers, networking, storage, cloud, Linux, Exchange, virtualization, DNS and hosting.</p>
         </div></div>
@@ -571,11 +557,11 @@
     <section id="education">
       <h3 class="section-title">Education & Certifications</h3>
       <div class="grid">
-        <div class="mini"><div class="pad">
+        <div class="mini tilt"><div class="pad">
           <h3 style="margin:0">Education</h3>
           <p class="subtitle">Artificial Intelligence — UNIBIT (ongoing) • Cybersecurity — Rakovski National Defence College • Master Degree in Law — Sofia University.</p>
         </div></div>
-        <div class="mini"><div class="pad">
+        <div class="mini tilt"><div class="pad">
           <h3 style="margin:0">Certifications</h3>
           <p class="subtitle">Cisco • IS2 • SoftUni (training/courses). Driving License B category.</p>
         </div></div>
@@ -605,7 +591,7 @@
   </dialog>
 
   <script>
-    // Lightweight brand logos via Simple Icons (vector, cacheable)
+    // Logos via Simple Icons (vector, cacheable)
     const logo = {
       adobe: "https://cdn.simpleicons.org/adobe/ff0000",
       openai: "https://cdn.simpleicons.org/openai/ffffff",
@@ -618,14 +604,13 @@
       dji: "https://cdn.simpleicons.org/dji/ffffff",
       vive: "https://cdn.simpleicons.org/htc/ffffff",
       meta: "https://cdn.simpleicons.org/meta/ffffff",
-      snapmaker: "https://cdn.simpleicons.org/creality/ffffff", // fallback icon (Snapmaker not in simpleicons)
       ultimaker: "https://cdn.simpleicons.org/ultimaker/ffffff",
       alexa: "https://cdn.simpleicons.org/amazonalexa/00a8e1",
       googlehome: "https://cdn.simpleicons.org/googlehome/ffffff",
-      bhaptics: "https://cdn.simpleicons.org/vrchat/ffffff" // placeholder icon (bHaptics not in simpleicons)
+      bhaptics: "https://cdn.simpleicons.org/vrchat/ffffff" // placeholder icon
     };
 
-    // Asset catalogue (you can extend this list at any time)
+    // Asset catalogue
     const assets = [
       // Software
       {
@@ -667,7 +652,7 @@
           "Collaboration": "Comparative prompting across models"
         },
         links: [
-          { label: "Google", href: "https://ai.google/" }
+          { label: "Google AI", href: "https://ai.google/" }
         ]
       },
       {
@@ -796,14 +781,13 @@
         type: "xr",
         name: "bHaptics Suit & Gloves",
         brandIcon: logo.bhaptics,
-        blurb: "Haptic feedback equipment to prototype tactile experiences for XR training and games.",
+        blurb: "Haptic equipment to prototype tactile experiences for XR training and games.",
         specs: {
-          "TactSuit Pro": "32 feedback points (ERM motors), up to ~13.5 hours playtime (usage dependent)",
-          "TactGlove DK2": "12 haptic feedback points (HD LRAs)"
+          "Use": "Tactile feedback design, VR training, immersive interaction",
+          "Note": "Exact model specs can be added if you specify Suit/Glove versions"
         },
         links: [
-          { label: "TactSuit Pro", href: "https://www.bhaptics.com/en/tactsuit/tactsuit-pro/" },
-          { label: "TactGlove DK2", href: "https://www.bhaptics.com/en/tactsuit/tactglove-dk2/" }
+          { label: "bHaptics", href: "https://www.bhaptics.com/" }
         ]
       },
 
@@ -816,11 +800,10 @@
         blurb: "Compact ARM computer for edge compute, sensors, prototypes and gateways.",
         specs: {
           "CPU": "Broadcom BCM2711, quad-core Cortex-A72 @ 1.8 GHz",
-          "RAM": "1/2/4/8 GB LPDDR4 (variant dependent)",
-          "I/O": "2× USB 3.0, 2× USB 2.0, Gigabit Ethernet, dual micro-HDMI"
+          "I/O": "USB 3.0, Gigabit Ethernet, dual micro-HDMI"
         },
         links: [
-          { label: "Raspberry Pi 4 specs", href: "https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/" }
+          { label: "Pi 4 specs", href: "https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/" }
         ]
       },
       {
@@ -831,11 +814,10 @@
         blurb: "Newer generation Pi for faster edge compute and higher-throughput prototyping.",
         specs: {
           "CPU": "Broadcom BCM2712, quad-core Cortex-A76 @ 2.4 GHz",
-          "Positioning": "Up to ~2–3× CPU uplift vs Pi 4 (vendor guidance)",
-          "RAM": "Variants up to 16 GB (model dependent)"
+          "Positioning": "~2–3× CPU uplift vs Pi 4 (vendor guidance)"
         },
         links: [
-          { label: "Raspberry Pi 5", href: "https://www.raspberrypi.com/products/raspberry-pi-5/" }
+          { label: "Pi 5", href: "https://www.raspberrypi.com/products/raspberry-pi-5/" }
         ]
       },
       {
@@ -843,16 +825,13 @@
         type: "robotics",
         name: "Arduino Mega 2560 + Sensor Kit",
         brandIcon: logo.arduino,
-        blurb: "Microcontroller platform for rapid sensor/actuator experiments, robotics and IoT.",
+        blurb: "Microcontroller platform for rapid sensor/actuator experiments and robotics.",
         specs: {
           "MCU": "ATmega2560",
-          "Flash": "256 KB (8 KB used by bootloader)",
-          "SRAM": "8 KB",
-          "EEPROM": "4 KB",
           "I/O": "54 digital pins, 16 analog inputs"
         },
         links: [
-          { label: "Arduino Mega 2560", href: "https://store.arduino.cc/products/arduino-mega-2560-rev3" }
+          { label: "Arduino Mega", href: "https://store.arduino.cc/products/arduino-mega-2560-rev3" }
         ]
       },
       {
@@ -860,9 +839,9 @@
         type: "robotics",
         name: "Robotic Arm",
         brandIcon: logo.arduino,
-        blurb: "Robotics prototyping platform for kinematics, control loops and interaction demos.",
+        blurb: "Robotics platform for kinematics, control loops and interaction demos.",
         specs: {
-          "Use": "Pick-and-place demos, perception + control experiments, XR teleoperation",
+          "Use": "Pick-and-place, perception + control experiments, XR teleoperation",
           "Integration": "Arduino/Raspberry Pi + sensors"
         },
         links: []
@@ -889,26 +868,24 @@
         blurb: "Reliable FFF 3D printer for functional prototypes and custom parts.",
         specs: {
           "Build volume": "223 × 223 × 205 mm",
-          "Layer resolution": "20–200 micron (nozzle dependent)",
-          "Technology": "FFF (fused filament fabrication)"
+          "Layer resolution": "20–200 micron (nozzle dependent)"
         },
         links: [
-          { label: "Ultimaker 2+ datasheet", href: "https://um-support-files.ultimaker.com/Product-datasheet/Other/Ultimaker%202%2B%20series%20-%20Product%20data%20sheet.pdf" }
+          { label: "Ultimaker datasheet", href: "https://um-support-files.ultimaker.com/Product-datasheet/Other/Ultimaker%202%2B%20series%20-%20Product%20data%20sheet.pdf" }
         ]
       },
       {
         id: "snapmaker",
         type: "fabrication",
         name: "Snapmaker 3-in-1 (3D Print / Laser / CNC)",
-        brandIcon: logo.snapmaker,
+        brandIcon: logo.microsoft,
         blurb: "Modular fabrication platform for rapid multi-process prototyping.",
         specs: {
-          "Capabilities": "3D printing + laser engraving/cutting + CNC carving",
-          "Work area": "Varies by model; e.g., A350T 3D print work area up to ~320 × 335 × 310 mm",
-          "Chassis": "All-metal modular design"
+          "Capabilities": "3D printing + laser + CNC",
+          "Note": "Work area varies by model"
         },
         links: [
-          { label: "Snapmaker 2.0 specs", href: "https://www.snapmaker.com/snapmaker-2/specs-at" }
+          { label: "Snapmaker specs", href: "https://www.snapmaker.com/snapmaker-2/specs-at" }
         ]
       },
       {
@@ -919,11 +896,10 @@
         blurb: "Drone platform for aerial capture, mapping experiments and creative XR assets.",
         specs: {
           "Max flight time": "Up to ~45 minutes (vendor spec)",
-          "Max takeoff altitude": "6000 m (vendor spec)",
-          "Use": "Aerial photo/video capture, photogrammetry inputs (project-dependent)"
+          "Use": "Aerial photo/video capture, photogrammetry inputs"
         },
         links: [
-          { label: "DJI Air 3S specs", href: "https://www.dji.com/bg/air-3s/specs" }
+          { label: "DJI Air 3S specs", href: "https://www.dji.com/air-3s/specs" }
         ]
       }
     ];
@@ -955,6 +931,30 @@
       return hay.includes(text.toLowerCase());
     }
 
+    function badgeFor(type){
+      if(type === 'software') return '<span class="badge c">Software</span>';
+      if(type === 'compute') return '<span class="badge c">Compute</span>';
+      if(type === 'xr') return '<span class="badge p">XR / Haptics</span>';
+      if(type === 'robotics') return '<span class="badge g">Robotics / IoT</span>';
+      if(type === 'fabrication') return '<span class="badge g">Fabrication</span>';
+      return '';
+    }
+
+    function applyTilt(el){
+      const strength = 10;
+      el.addEventListener('mousemove', (e)=>{
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const rx = (py - 0.5) * -strength;
+        const ry = (px - 0.5) * strength;
+        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+      });
+      el.addEventListener('mouseleave', ()=>{
+        el.style.transform = '';
+      });
+    }
+
     function render(){
       const text = q.value.trim();
       const items = assets
@@ -965,23 +965,17 @@
 
       if(items.length === 0){
         const empty = document.createElement('div');
-        empty.className = 'mini';
+        empty.className = 'mini tilt';
         empty.innerHTML = `<div class="pad"><h3 style="margin:0">No matches</h3><p class="subtitle">Try a different keyword or remove filters.</p></div>`;
         grid.appendChild(empty);
+        applyTilt(empty);
         return;
       }
 
       for(const a of items){
         const card = document.createElement('div');
-        card.className = 'mini';
+        card.className = 'mini tilt';
         card.style.cursor = 'pointer';
-
-        const badges = [];
-        if(a.type === 'software') badges.push('<span class="badge c">Software</span>');
-        if(a.type === 'compute') badges.push('<span class="badge c">Compute</span>');
-        if(a.type === 'xr') badges.push('<span class="badge p">XR / Haptics</span>');
-        if(a.type === 'robotics') badges.push('<span class="badge g">Robotics / IoT</span>');
-        if(a.type === 'fabrication') badges.push('<span class="badge g">Fabrication</span>');
 
         card.innerHTML = `
           <div class="asset">
@@ -989,13 +983,14 @@
             <div>
               <h3>${esc(a.name)}</h3>
               <p>${esc(a.blurb)}</p>
-              <div class="meta">${badges.join('')}</div>
+              <div class="meta">${badgeFor(a.type)}</div>
             </div>
           </div>
         `;
 
         card.addEventListener('click', () => openModal(a));
         grid.appendChild(card);
+        applyTilt(card);
       }
     }
 
@@ -1047,6 +1042,82 @@
     });
 
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // --- Cyberpunk particles (lightweight) ---
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let W=0,H=0;
+
+    function resize(){
+      W = canvas.width = Math.floor(window.innerWidth * devicePixelRatio);
+      H = canvas.height = Math.floor(window.innerHeight * devicePixelRatio);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const rnd = (a,b)=>a+Math.random()*(b-a);
+    const palette = [
+      {r:0,g:229,b:255,a:0.9},
+      {r:255,g:79,b:216,a:0.85},
+      {r:124,g:255,b:107,a:0.85}
+    ];
+
+    const N = 90;
+    const pts = Array.from({length:N}, () => ({
+      x: rnd(0,W),
+      y: rnd(0,H),
+      vx: rnd(-0.12,0.12)*devicePixelRatio,
+      vy: rnd(-0.12,0.12)*devicePixelRatio,
+      s: rnd(0.7,1.8)*devicePixelRatio,
+      c: palette[(Math.random()*palette.length)|0]
+    }));
+
+    function tick(){
+      ctx.clearRect(0,0,W,H);
+
+      for(const p of pts){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0) p.x=W; if(p.x>W) p.x=0;
+        if(p.y<0) p.y=H; if(p.y>H) p.y=0;
+
+        const g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y, 18*devicePixelRatio);
+        g.addColorStop(0, `rgba(${p.c.r},${p.c.g},${p.c.b},${0.12})`);
+        g.addColorStop(1, `rgba(${p.c.r},${p.c.g},${p.c.b},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y, 18*devicePixelRatio, 0, Math.PI*2);
+        ctx.fill();
+
+        ctx.fillStyle = `rgba(${p.c.r},${p.c.g},${p.c.b},${0.55})`;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y, p.s, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      for(let i=0;i<pts.length;i++){
+        for(let j=i+1;j<pts.length;j++){
+          const a=pts[i], b=pts[j];
+          const dx=a.x-b.x, dy=a.y-b.y;
+          const d=Math.hypot(dx,dy);
+          const max=140*devicePixelRatio;
+          if(d<max){
+            const alpha = (1 - d/max) * 0.10;
+            ctx.strokeStyle = `rgba(0,229,255,${alpha})`;
+            ctx.lineWidth = 1*devicePixelRatio;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    document.querySelectorAll('.tilt').forEach(applyTilt);
     render();
   </script>
 </body>
